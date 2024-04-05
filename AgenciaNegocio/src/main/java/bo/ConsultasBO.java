@@ -215,27 +215,27 @@ public class ConsultasBO {
 //        return licenciasDTO;
 //    }
 //
-//    public List<PlacaDTO> obtenerHistorialPlacasPersona(PersonaDTO personaDTO) {
-//        Persona persona = new Persona();
-//        persona.setRfc(personaDTO.getRfc());
-//        List<Placa> placas = placaDAO.consultarPlacasPersona(persona);
-//
-//        List<PlacaDTO> placasDTO = new ArrayList<>();
-//        for (Placa placa : placas) {
-//            PlacaDTO placaDTO = new PlacaDTO(
-//                    placa.getNumPlaca(),
-//                    placa.getEstado(),
-//                    placa.getDiscapacitado(),
-//                    placa.getEntrego(),
-//                    placa.getVehiculo(),
-//                    placa.getCosto(),
-//                    new PersonaDTO(persona)
-//            );
-//            placasDTO.add(placaDTO);
-//        }
-//
-//        return placasDTO;
-//    }
+    public List<PlacaDTO> obtenerHistorialPlacasPersona(PersonaDTO personaDTO) {
+        Persona persona = new Persona();
+        persona.setRfc(personaDTO.getRfc());
+        List<Placa> placas = placaDAO.consultarPlacasPersona(persona);
+
+        List<PlacaDTO> placasDTO = new ArrayList<>();
+        for (Placa placa : placas) {
+            PlacaDTO placaDTO = new PlacaDTO(
+                    placa.getNumPlaca(),
+                    placa.getEstado(),
+                    placa.getDiscapacitado(),
+                    placa.getEntrego(),
+                    placa.getVehiculo(),
+                    placa.getCosto(),
+                    new PersonaDTO(persona)
+            );
+            placasDTO.add(placaDTO);
+        }
+
+        return placasDTO;
+    }
     
 //    public List<PlacaDTO> obtenerPlacasPorCURP(String curp) {
 //    Persona persona = personaDAO.obtenerPersonaPorCURP(new Persona(curp));

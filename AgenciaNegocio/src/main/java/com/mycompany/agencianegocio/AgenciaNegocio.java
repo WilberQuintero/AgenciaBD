@@ -1,6 +1,8 @@
 
 package com.mycompany.agencianegocio;
 
+import DAO.PersonaDAO;
+import DAO.PlacaDAO;
 import bo.ConsultasBO;
 import bo.RegistroLicenciasBO;
 import dto.LicenciaDTO;
@@ -20,27 +22,22 @@ public class AgenciaNegocio {
 
     public static void main(String[] args) {
         
-         ConsultasBO consultasBO = new ConsultasBO(); // Suponiendo que ConsultasBO es la clase que contiene el método obtenerHistorialLicenciasAnioNacimiento
-        
-        // Supongamos que deseas obtener el historial de licencias para personas nacidas en el año 1990
-        int anioNacimiento = 1988;
-        
-        // Llama al método para obtener el historial de licencias por año de nacimiento
-        List<LicenciaDTO> licenciasPorAnio = consultasBO.obtenerHistorialLicenciasAnioNacimiento(anioNacimiento);
-        
-        // Verifica si se encontraron licencias y muestra la información
-        if (licenciasPorAnio != null && !licenciasPorAnio.isEmpty()) {
-            System.out.println("Historial de licencias para personas nacidas en el año " + anioNacimiento + ":");
-            for (LicenciaDTO licenciaDTO : licenciasPorAnio) {
-                System.out.println("Folio: " + licenciaDTO.getFolio() + ", Estado: " + licenciaDTO.getEstado() + ", Tipo: " + licenciaDTO.getTipo());
-                System.out.println("Fecha de Vigencia: " + licenciaDTO.getFechaVigencia() + ", Costo: " + licenciaDTO.getCosto());
-                System.out.println("Persona: " + licenciaDTO.getPersona().getNombre() + " " +licenciaDTO.getPersona().getApellidoP() + " " +licenciaDTO.getPersona().getApellidoM());
-                System.out.println("---------------------------------------");
-            }
-        } else {
-            System.out.println("No se encontraron licencias para personas nacidas en el año " + anioNacimiento);
-        }
+         PersonaDAO personaDAO = new PersonaDAO();
+         ConsultasBO consultas = new ConsultasBO();
+        // Supongamos que tienes un nombre, apellido paterno y apellido materno válidos para probar
+        String nombre = "Juan";
+        String apellidoPaterno = "González";
+        String apellidoMaterno = "";
 
-       }  
+        List<LicenciaDTO> historialLicencias = consultas.obtenerHistorialLicenciasNombre(nombre, apellidoPaterno, apellidoMaterno);
+        // Mostramos el historial de licencias
+        for (LicenciaDTO licenciaDTO : historialLicencias) {
+            System.out.println(licenciaDTO);
+        }
     }
+        
+    }
+
+       
+    
 
